@@ -17,16 +17,16 @@ on:
 
 jobs:
   build_all_drivers:
+    uses: d-cryptic/olake/.github/workflows/build-and-release-driver.yml@d-cryptic/olake-main-releaser-test
+    with:
+      driver: ${{ github.event.inputs.driver || matrix.driver }}
+      version: ${{ github.event.inputs.version || github.event.release.tag_name }}
+      secrets: inherit
+    
+    runs-on: ubuntu-latest
     if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master') || github.event_name == 'pull_request'
     name: Build and Release Drivers
-    runs-on: ubuntu-latest
+    
     strategy:
       matrix:
         driver: [mongodb, mysql, postgres] # Add new drivers here as they become available
-    steps:
-      - name: Call Build And Release Workflow
-        uses: d-cryptic/olake/.github/workflows/build-and-release-driver.yml@d-cryptic/olake-main-releaser-test
-        with:
-          driver: ${{ github.event.inputs.driver || matrix.driver }}
-          version: ${{ github.event.inputs.version || github.event.release.tag_name }}
-          secrets: inherit
