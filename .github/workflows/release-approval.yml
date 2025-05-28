@@ -21,7 +21,6 @@ jobs:
     with:
       driver: ${{ github.event.inputs.driver || matrix.driver }}
       version: ${{ github.event.inputs.version || github.event.release.tag_name }}
-      secrets: inherit
     if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master') || github.event_name == 'pull_request'
     name: Build and Release Drivers
     
