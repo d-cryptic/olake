@@ -27,7 +27,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - uses: d-cryptic/olake/.github/workflows/build-and-release-driver.yml
+      - uses: ./.github/workflows/build-and-release-driver.yml
         with:
           driver: ${{ github.event.inputs.driver || matrix.driver }}
           version: ${{ github.event.inputs.version || github.event.release.tag_name }}
