@@ -26,6 +26,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          ref: d-cryptic/olake-main-releaser-test
+
 
       - uses: ./.github/workflows/build-and-release-driver.yml
         with:
