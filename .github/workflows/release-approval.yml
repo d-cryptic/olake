@@ -3,21 +3,14 @@ name: Draft Release Approval
 on:
   release:
     types: [published]
-  pull_request:
-    branches:
-      - master
   workflow_dispatch:
     inputs:
       driver:
         description: "Driver to build"
         required: true
-        type: string
-        default: ""
       version:
         description: "Version to release"
         required: true
-        type: string
-        default: ""
 
 jobs:
   build_all_drivers:
